@@ -3,6 +3,7 @@ package routes
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/hjunor/api-rest-golang.git/controllers"
+	"github.com/hjunor/api-rest-golang.git/server/middlewares"
 )
 
 func ConfigRoutes(router *gin.Engine) *gin.Engine {
@@ -13,7 +14,7 @@ func ConfigRoutes(router *gin.Engine) *gin.Engine {
 			users.POST("/", controllers.CreateUser)
 			users.POST("/login", controllers.Login)
 		}
-		books := main.Group("/books")
+		books := main.Group("/books", middlewares.Auth())
 		{
 			books.GET("/:id", controllers.ShowBook)
 			books.GET("/", controllers.ShowBooks)
