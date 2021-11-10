@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/dgrijalva/jwt-go"
+	"github.com/hjunor/api-rest-golang.git/helpers"
 )
 
 type jtwServices struct {
@@ -14,8 +15,8 @@ type jtwServices struct {
 
 func NewJwtServices() *jtwServices {
 	return &jtwServices{
-		secretkey: "hash-256",
-		issuer:    "api-rest-go",
+		secretkey: helpers.GevToEnv("HASH"),
+		issuer:    helpers.GevToEnv("ISSUER"),
 	}
 }
 

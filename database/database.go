@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/hjunor/api-rest-golang.git/database/migrations"
+	"github.com/hjunor/api-rest-golang.git/helpers"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 )
@@ -13,7 +14,7 @@ import (
 var db *gorm.DB
 
 func StartDB() {
-	str := "host=localhost port=25432 user=admin dbname=books sslmode=disable password=123456"
+	str := helpers.GevToEnv("DB")
 
 	database, err := gorm.Open(postgres.Open(str), &gorm.Config{})
 
